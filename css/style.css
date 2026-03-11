@@ -1,0 +1,909 @@
+/* Сброс стандартных браузерных стилей */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+:focus {
+    outline: 0;
+}
+
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    /* Когда в таблице две соседние ячейки, браузер по умолчанию показывает двойные линии.
+       collapse это останавливает и показывает одну линию вместо двух */
+    border-spacing: 0;
+    /* Убирает пространство (отступы) между ячейками таблицы.
+       Это нужно, чтобы ячейки были плотно прижаты друг к другу */
+}
+
+/* Базовые стили для форм и медиа */
+input[type=search] {
+    box-sizing: content-box;
+    /* box-sizing определяет как браузер считает размер элемента:
+       - content-box: width включает ТОЛЬКО текст (без padding и border)
+       - border-box: width включает ВСЁ (текст + padding + border)
+       Это важно, чтобы элемент не выступал за края, когда добавляем padding */
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    resize: vertical;
+}
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    max-width: 100%;
+}
+
+audio:not([controls]) {
+    display: none;
+    /* :not([controls]) выбирает аудиоэлементы БЕЗ атрибута controls.
+       display: none полностью скрывает элемент - его вообще не видно и не занимает место */
+    height: 0;
+    /* На случай, если браузер не поддерживает display: none, убираем высоту второй раз */
+}
+
+[hidden] {
+    display: none;
+}
+
+html {
+    font-size: 100%;
+}
+
+a:focus {
+    outline: thin dotted;
+    /* Когда кто-то нажимает Tab и переходит на ссылку, браузер показывает рамку.
+       Это очень важно для людей, которые используют клавиатуру вместо мышки (доступность).
+       thin dotted = тонкая пунктирная рамка вокруг ссылки */
+}
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+img {
+    border: 0;
+}
+
+figure {
+    margin: 0;
+}
+
+form {
+    margin: 0;
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+    border: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+}
+
+button,
+input {
+    line-height: normal;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+    /* Когда наводишь мышку на кнопку, курсор должен измениться на "рука с пальцем".
+       Это сигнал пользователю: "На это можно нажать!" (хорошая практика UX) */
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+    /* Если кнопка неактивна (отключена), курсор должен остаться обычным (стрелка).
+       Это говорит: "На эту кнопку нельзя нажать". На эту кнопку нельзя нажать */
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/* Подготовка общих цветов и состояний */
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* Подключение шрифта */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'),
+        url('../fonts/lato-v15-latin-regular.woff2') format('woff2'),
+        url('../fonts/lato-v15-latin-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lato Bold'), local('Lato-Bold'),
+        /* local() проверяет: есть ли уже этот шрифт установлен на компьютере пользователя?
+           Если есть - НЕ СКАЧИВАЕМ! Берем локальный. Это экономит интернет трафик */
+        url('../fonts/lato-v15-latin-700.woff2') format('woff2'),
+        /* woff2 - новый формат шрифта, занимает меньше места, быстрее загружается */
+        url('../fonts/lato-v15-latin-700.woff') format('woff');
+    /* woff - старый формат шрифта. На случай если браузер не поддерживает woff2 */
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Lato Black'), local('Lato-Black'),
+        url('../fonts/lato-v15-latin-900.woff2') format('woff2'),
+        url('../fonts/lato-v15-latin-900.woff') format('woff');
+}
+
+/* Общая раскладка страницы */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Lato';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: normal;
+    color: #102746;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.wrapper {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.wrapper-full {
+    max-width: 1262px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-title {
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 42px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    display: block;
+    content: '';
+    width: 253px;
+    height: 3px;
+    background-color: #006DFE;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+/* Шапка сайта */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: .2s linear;
+    padding-bottom: 20px;
+    z-index: 999;
+}
+
+.header_active {
+    background: #0E1D28;
+}
+
+.header__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-top: 56px;
+}
+
+.header__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header__item {
+    margin-right: 82px;
+}
+
+.header__item:last-child {
+    margin-right: 0;
+}
+
+.header__link {
+    font-size: 18px;
+    line-height: 24px;
+    color: white;
+    text-decoration: none;
+}
+
+.header__link:hover,
+.header__link:focus,
+.header__link:active {
+    opacity: .75;
+}
+
+
+/* Первый экран */
+.intro {
+    min-height: 100vh;
+    background: url(../img/intro-bg-min.jpg) no-repeat center;
+    background-size: cover;
+    padding-top: 263px;
+    padding-bottom: 223px;
+}
+
+.intro__title {
+    max-width: 619px;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 60px;
+    color: white;
+    margin-bottom: 22px;
+}
+
+.intro__subtitle {
+    max-width: 546px;
+    color: white;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 59px;
+}
+
+.search-form__info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-form__field {
+    width: 297px;
+    background: transparent url(../img/svg/circle-ico.svg) no-repeat left 6px;
+    background-size: 20px;
+    border: 0;
+    border-bottom: 2px solid #BFC0C5;
+    margin-right: 60px;
+    padding-left: 43px;
+    padding-bottom: 22px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+}
+
+.search-form__field::placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+}
+
+.search-form__submit {
+    padding: 15px 39px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 24px;
+    color: white;
+    background: #1B7DFF;
+    border: 0;
+}
+
+.search-form__submit:hover,
+.search-form__submit:focus,
+.search-form__submit:active {
+    background: #0e66da;
+}
+
+/* Блок с преимуществами */
+.benefits {
+    margin-bottom: 131px;
+}
+
+.benefits__wrap {
+    max-width: 1262px;
+    background-color: #fff;
+    margin: 0 auto;
+    box-shadow: 0px 2px 20px rgba(21, 24, 36, 0.15993);
+    position: relative;
+}
+
+.benefits__title {
+    width: 100%;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 42px;
+    padding: 93px 100px 88px 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    background-color: #fff;
+}
+
+.benefits__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 55px;
+    padding: 0 100px;
+}
+
+.benefits__card {
+    grid-column: span 1;
+    margin-bottom: 112px;
+}
+
+.benefits__card-pic {
+    max-width: 66px;
+    margin-bottom: 37px;
+}
+
+.benefits__card-thumb {
+    display: block;
+}
+
+.benefits__card-title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 26px;
+}
+
+.benefits__card-desc {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 39px;
+}
+
+.benefits__card-more {
+    display: inline-block;
+    padding-right: 59px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #006DFE;
+    text-decoration: none;
+    background: url(../img/svg/arrow-right-ico.svg) no-repeat 95% center;
+    transition: .2s all;
+}
+
+.benefits__card-more:hover,
+.benefits__card-more:focus {
+    background: url(../img/svg/arrow-right-ico.svg) no-repeat right center;
+}
+
+/* Блок с карточками мест */
+.places {
+    margin-bottom: 131px;
+}
+
+.places__caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+}
+
+.places__title {
+    margin-right: 15px;
+}
+
+.places__view-all {
+    font-size: 16px;
+    color: #006DFE;
+    text-decoration: none;
+    padding-right: 59px;
+    background: url(../img/svg/arrow-right-ico.svg) no-repeat right center;
+}
+
+.places__view-all:hover,
+.places__view-all:focus {
+    opacity: .65;
+}
+
+.places__cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.places__card {
+    position: relative;
+    overflow: hidden;
+}
+
+.places__card::after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: rgba(21, 24, 36, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.places__card:hover .places__card-pic {
+    transform: scale(1.05);
+}
+
+.places__card-title {
+    font-size: 50px;
+    line-height: 60px;
+    color: white;
+    position: absolute;
+    bottom: 27px;
+    left: 29px;
+    z-index: 3;
+}
+
+.places__card_size_lg {
+    grid-column: span 3;
+}
+
+.places__card_size_sm {
+    grid-column: span 2;
+}
+
+.places__card-pic {
+    width: 100%;
+    transition: .15s all;
+}
+
+.places__card-pic_size_lg {
+    height: 354px;
+    object-fit: cover;
+}
+
+.places__card-pic_size_sm {
+    height: 283px;
+    object-fit: cover;
+}
+
+.places__card-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+
+
+
+/* Подвал сайта */
+.footer {
+    background: #0E1D28;
+    padding: 119px 0;
+}
+
+.footer__item {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer__logo {
+    width: 50%;
+}
+
+.footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.footer__menu-title {
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.footer__menu-link {
+    color: white;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.footer__menu-link:hover,
+.footer__menu-link:focus,
+.footer__menu-link:active {
+    opacity: .75;
+}
+
+/* Адаптивные правила */
+@media screen and (max-width: 960px) {
+    .benefits {
+        margin-bottom: 75px;
+    }
+
+    .benefits__card {
+        margin-bottom: 60px;
+    }
+
+    .search-form__field {
+        margin-bottom: 25px;
+    }
+
+    .benefits__cards {
+        padding: 0 15px;
+        column-gap: 35px;
+    }
+
+    .benefits__title {
+        padding: 55px 15px;
+    }
+
+    .benefits__wrap {
+        box-shadow: none;
+    }
+
+    .places__card_size_lg {
+        grid-column: span 6;
+    }
+
+    .places__card_size_sm {
+        grid-column: span 6;
+    }
+
+    .tours__tour {
+        column-gap: 35px;
+    }
+
+    .tour__info {
+        padding-left: 0;
+    }
+
+    .tour__title {
+        margin-bottom: 15px;
+    }
+
+    .tour__desc {
+        margin-bottom: 15px;
+    }
+
+    .top__cards {
+        column-gap: 25px;
+        row-gap: 55px;
+    }
+
+    .top__card {
+        grid-column: span 3;
+    }
+
+    .top__card-pic {
+        margin-bottom: 25px;
+    }
+
+    .footer {
+        padding: 60px 0;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .header__nav {
+        padding: 75px 30px;
+    }
+}
+
+/*
+  ====================================================================
+  СПРАВОЧНИК ДЛЯ QA - ОСНОВНЫЕ CSS КЛАССЫ И ЭЛЕМЕНТЫ
+  ====================================================================
+
+  👉 ГЛАВНЫЕ ЭЛЕМЕНТЫ СТРАНИЦЫ:
+  
+  .wrapper — контейнер для контента, с максимальной шириной 1060px.
+            Центрирует содержимое с отступами по бокам (padding: 0 15px).
+            Используется в большинстве секций для красивой верстки.
+  
+  .wrapper-full — более широкий контейнер (max-width: 1262px).
+                 Используется для больших блоков как .places и им подобные.
+
+  👉 ШАПКА (HEADER):
+  
+  .header — фиксированная шапка сайта (position: fixed), которая всегда видна вверху.
+           Имеет высокий z-index (999), чтобы она была НАД всеми остальными элементами.
+  
+  .header_active — модификатор (класс-состояние), который добавляется через JavaScript.
+                  Когда пользователь скроллит, шапка становится темнее (background: #0E1D28).
+  
+  .header__link:hover, :focus, :active — когда наводишь мышку / нажимаешь на ссылку,
+                                         она становится полупрозрачной (opacity: .75).
+
+  👉 ПЕРВЫЙ ЭКРАН (INTRO):
+  
+  .intro — большой баннер во всю высоту экрана (min-height: 100vh).
+          Фоновое изображение (background: url(...)) растягивается на весь экран.
+          Содержит заголовок .intro__title и описание .intro__subtitle.
+  
+  .search-form__info, .search-form__field — форма поиска с двумя полями ввода.
+                                            Стили делают поля красивыми и функциональными.
+
+  👉 БЛОК ПРЕИМУЩЕСТВ (BENEFITS):
+  
+  .benefits — секция с преимуществами сервиса.
+  
+  .benefits__wrap — белый контейнер с тенью (box-shadow) и позиционированием.
+                  .benefits__title позиционирован выше контейнера (transform: translateY(-100%)).
+  
+  .benefits__cards — сетка из 3 колонок (grid-template-columns: repeat(3, 1fr)).
+                    Каждая колонка зависит от других по ширине.
+  
+  .benefits__card — отдельная карточка с иконкой, заголовком и описанием.
+                  Последнее свойство .benefits__card-more — синяя ссылка "LEARN MORE".
+
+  👉 БЛОК МЕСТ (PLACES):
+  
+  .places — секция с карточками мест.
+           Использует grid-систему (6 колонок) для красивой раскладки.
+  
+  .places__card — одна карточка с изображением и названием (например, "Mount Fuji").
+  
+  .places__card_size_lg — большая карточка, занимает 3 колонки (grid-column: span 3).
+                         Используется для главных мест (Mount Fuji, Kyoto).
+  
+  .places__card_size_sm — маленькая карточка, занимает 2 колонки (grid-column: span 2).
+                          Используется для дополнительных мест.
+  
+  .places__card::after — полупрозрачный слой поверх изображения (rgba(21, 24, 36, 0.4)).
+                        Это нужно, чтобы белый текст был видным поверх любого фона.
+  
+  .places__card:hover .places__card-pic — при наведении мышки карточка слегка увеличивается
+                                         через transform: scale(1.05). Красивый эффект!
+
+  👉 ПОДВАЛ (FOOTER):
+  
+  .footer — темный подвал (background: #0E1D28) с логотипом и меню.
+  
+  .footer__nav — меню в 3 колонки (Company, Locations, Social Media).
+                Используется flex для выравнивания.
+
+  👉 СПЕЦИАЛЬНЫЕ ТЕХНИКИ:
+
+  ::after и ::before — это псевдоэлементы. Они создают виртуальные элементы БЕЗ добавления новых строк HTML.
+                      Пример: .section-title::after создает подчеркивание под заголовком.
+  
+  :hover, :focus, :active — это псевдоклассы (состояния элемента).
+                           - :hover — когда наводишь мышку
+                           - :focus — когда кликнул через Tab (клавиатура) или мышку
+                           - :active — когда ПРЯМО СЕЙЧАС нажимаешь кнопку
+  
+  box-sizing: border-box — ВАЖНО! Это свойство меняет, как считаются размеры элемента.
+                          Обычно width не включает padding и border.
+                          border-box включает их. Это очень удобно для верстки!
+  
+  z-index — определяет, какой элемент выше. Больше число = выше на экране.
+           .header имеет z-index: 999, так что шапка ВСЕГДА над всеми остальными.
+
+  👉 АДАПТИВНОСТЬ (@media queries):
+  
+  @media screen and (max-width: 960px) — эти правила работают только на экранах шире чем 960px.
+  @media screen and (max-width: 767px) — эти правила работают только на экранах уже чем 767px (планшеты).
+  @media screen and (max-width: 500px) — эти правила работают только на экранах уже чем 500px (мобилки).
+  
+  На старых экранах сетка меняется: 3 колонки становятся 1 колонкой, шрифты становятся меньше и т.д.
+  Это нужно, чтобы сайт хорошо смотрелся везде: на компьютере, планшете, телефоне.
+
+  👉 СЕЛЕКТОРЫ БЕМ НОТАЦИИ:
+
+  .block — основной элемент
+  .block__element — элемент внутри блока (двойной подчеркивание)
+  .block_modifier — модификатор / состояние блока (одинарный подчеркивание)
+  
+  Пример:
+  .header — блок (шапка)
+  .header__link — элемент (ссылка внутри шапки)
+  .header_active — состояние (шапка с темным фоном)
+
+  ====================================================================
+*/
